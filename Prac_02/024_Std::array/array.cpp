@@ -8,11 +8,10 @@ int main() {
 
   for (auto &iter : arr)
     std::cin >> iter;
-au
 
   auto min_max = std::minmax_element(begin(arr), end(arr));
 
-  std::cout << *min_max.first << "\t" << *min_max.second << std::endl;
+  std::cout << *min_max.second << " " << *min_max.first << std::endl;
 
   return 0;
 
