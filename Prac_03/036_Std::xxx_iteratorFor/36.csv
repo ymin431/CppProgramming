@@ -1,0 +1,2 @@
+std::ostream_iterator 는 extraction operator ( << )를 사용하여 출력 스트림에 연속적인 값을 쓰는 이터레이터다.
+std::istream_iterator 는 입력 스트림에서 특정 타입의 값을 추출하는 이터레이터다.
