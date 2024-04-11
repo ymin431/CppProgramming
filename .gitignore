@@ -1,6 +1,6 @@
-exe/
-cmake-build-debug
 .idea
+exe/
+cmake-build-debug/
 SebClientSettings.seb
-CMakeLists.txt
 .DS_Store
+CMakeLists.txt
