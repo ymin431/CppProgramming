@@ -1,4 +1,4 @@
 # COUT
-- C++¿¡¼­ coutÀº C¿¡¼­ÀÇ printf¿Í ´Þ¸® Ãâ·ÂÇÒ °ÍÀÇ typeÀ» ÀÚµ¿À¸·Î °¨ÁöÇÏ°í Ãâ·Â
-- cout¿¡¼­ << Ç¥½Ã´Â »ðÀÔ ¿¬»êÀÚ
-- °³ÇàÀ» ÇÒ ¶§¿¡´Â Á¶Á¤ÀÚ endlÀÌ³ª \nÀ» »ç¿ë
+- C++ì—ì„œ coutì€ Cì—ì„œì˜ printfì™€ ë‹¬ë¦¬ ì¶œë ¥í•  ê²ƒì˜ typeì„ ìžë™ìœ¼ë¡œ ê°ì§€í•˜ê³  ì¶œë ¥
+- coutì—ì„œ << í‘œì‹œëŠ” ì‚½ìž… ì—°ì‚°ìž
+- ê°œí–‰ì„ í•  ë•Œì—ëŠ” ì¡°ì •ìž endlì´ë‚˜ \nì„ ì‚¬ìš©

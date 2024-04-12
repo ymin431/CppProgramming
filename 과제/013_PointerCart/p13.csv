@@ -1,1 +1,1 @@
-cannot jump from switch statement to this case label <- ÀÌ ¿¡·¯¸¦ ÇØ°áÇÏ±â À§ÇØ¼± switch¿¡ ¼Ò¼ÓµÈ ¿©·¯ case¹®¿¡ {}¸¦ ¾º¿öÁÖ¸é µÈ´Ù.
+cannot jump from switch statement to this case label <- ì´ ì—ëŸ¬ë¥¼ í•´ê²°í•˜ê¸° ìœ„í•´ì„  switchì— ì†Œì†ëœ ì—¬ëŸ¬ caseë¬¸ì— {}ë¥¼ ì”Œì›Œì£¼ë©´ ëœë‹¤.
