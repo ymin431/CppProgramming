@@ -38,3 +38,11 @@
 - 선택한 부분 코드 정렬 : `option cmd L`
 - 이름 일괄 변경하기 : `shift F6`
 - 쓰지 않는 import 정리하기 : `ctrl option O`
+
+## Github push
+```bash
+$ git add .
+$ git commit -m "message"
+$ git push origin main
+```
+- 이렇게 하면 `push` 완료!
