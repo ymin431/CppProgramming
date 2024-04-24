@@ -1,78 +1,114 @@
-#include <iostream>
+# include <iostream>
 
-int main( ) {
+const double CriticalLevel = 20 ;
 
-  double capacity ; // ¹èÅÍ¸®
-  double efficiency ; // Àüºñ
-  double battery_level ; // ÃæÀü·®(%)
-  double distance ; // ¸ñÀûÁö±îÁö °Å¸®
+bool destination( double battery, double now, double km_per_kW, double distance ) ; // ëª©ì ì§€ê¹Œì§€ ë°°í„°ë¦¬ ê³„ì‚°
 
-  // Ãâ·ÂÇÒ ¶§ ¼Ò¼öÁ¡ ÀÚ¸® °íÁ¤
-  std::cout << std::fixed ;
-  std::cout.precision( 2 ) ;
+bool nextStation( double battery, double now, double km_per_kW ) ; // ë‹¤ìŒ ì£¼ìœ ì†Œê¹Œì§€ ë°°í„°ë¦¬ ê³„ì‚°
 
+int main() {
 
-  // std::cin >> capacity >> efficiency >> battery_level >> distance ; // °ª ÀÔ·Â
-  capacity = 72.6 ;
-  efficiency = 5.6 ;
-  battery_level = 100 ;
-  distance = 420 ;
+    // ì†Œìˆ˜ì  ë‘˜ì§¸ ìë¦¬ë¡œ ê³ ì •
+    std::cout << std::fixed ;
+    std::cout.precision(2) ;
 
-  const double km_per_kW = capacity / 100 * efficiency ; // km_per_KW °è»ê½Ä
+    double capacity ; // ë°°í„°ë¦¬ ìš©ëŸ‰
+    double efficiency ; // ì „ë¹„
+    double battery_level ; // ì¶©ì „ëŸ‰
+    double distance ; // ëª©ì ì§€ê¹Œì§€ ê±°ë¦¬
 
-  double now = 0 ; // ¿îÀüÇÑ °Å¸® (ÇöÀç)
+    std::cin >> capacity >> efficiency >> battery_level >> distance ; // ì…ë ¥ ë°›ê¸°
 
-  // ÃæÀü·®ÀÌ 100% ÀÏ ¶§ Ãâ·Â
-  std::cout << "Current battery level: " << battery_level << "%, after traveling " << now << " km." << std::endl ;
+    const double km_per_kW = capacity / 100 * efficiency ;
 
+    double now = 0 ;
 
-  while ( now < distance ) {
+    while ( now < distance ) {
 
-    battery_level-- ;
+        // battery_levelì´ 10ë‹¨ìœ„ë©´ ì¶œë ¥
+        if (static_cast<int>(battery_level) % 10 == 0)
+            std::cout << "Current battery level: " << battery_level << "%, after traveling " << now << " km." << std::endl ;
 
-    now += km_per_kW ;
+        int third_digit = static_cast<int>(now/100) * 100 ; // ë°±ì˜ ìë¦¬ìˆ˜
+        double two_digits = now - third_digit ; // ì‹­ì˜ ìë¦¬ìˆ˜ë¶€í„°
 
-    // ÃæÀü·®ÀÌ 10 ´ÜÀ§ÀÏ ¶§ Ãâ·Â
-    if ( static_cast<int>( battery_level ) % 10 == 0 ) 
-      std::cout << "Current battery level: " << battery_level << "%, after traveling " << now << " km." << std::endl ;
+        if ( two_digits > 100 - km_per_kW) // km_per_kWì— ë”°ë¼ ë°œìƒí•˜ëŠ” ì˜¤ì°¨ë²”ìœ„ ì—†ì• ê¸°
+            third_digit += 100 ;
 
-    // ÃæÀüÇØ¾ßÇÏ´ÂÁö È®ÀÎ
-    if ( static_cast<int>( battery_level ) / 10 == 2 && now / 100.0 >= static_cast<int>(now) / 100 ) {
+        // í˜„ì¬ ë°°í„°ë¦¬ê°€ critical levelë³´ë‹¤ ë†’ìŒ && ë‹¤ìŒ ì •ë¥˜ì¥ê¹Œì§€ ê°€ë©´ ë°°í„°ë¦¬ê°€ critical levelë³´ë‹¤ ë‚®ìŒ && ì˜¤ì°¨ë²”ìœ„ && ëª©ì ì§€ê¹Œì§€ ë°°í„°ë¦¬ê°€ critical levelë³´ë‹¤ ë‚®ìŒ
+        if ( battery_level > CriticalLevel && nextStation(battery_level, now, km_per_kW)
+             && ( two_digits < km_per_kW || two_digits > 100 - km_per_kW ) && destination(battery_level, now, km_per_kW, distance) ) {
 
-      std::cout << "Current battery level: " << battery_level << "%, after traveling " << now << " km." << std::endl ;
-      std::cout << "Battery at " << battery_level << "%, stopping at " ;
+            std::cout << "Current battery level: " << battery_level << "%, after traveling " << now << " km." << std::endl ;
+            std::cout << "Battery at " << battery_level << "%, stopping at " ;
 
-      // ÃæÀü Áö¿ª Á¤ÇÏ±â
-      switch ( static_cast<int>( now ) / 100 ) {
+            switch ( third_digit ) {
+                case 100: { std::cout << "Gyeongsan for charging." << std::endl ; break ; }
+                case 200: { std::cout << "Gimcheon for charging." << std::endl ; break ; }
+                case 300: { std::cout << "Cheongju for charging." << std::endl ; break ; }
+                case 400: { std::cout << "Anseong for charging." << std::endl ; break ; }
+                default: { std::cout << "wrong place." << std::endl ; break ; }
+            }
 
-        case 1 : 
-          std::cout << "Gyeongsan for charging" << std::endl ;
-          break;
+            now = third_digit ;
+            battery_level = 80 ;
+            std::cout << "Current battery level: " << battery_level << "%, after traveling " << now << " km." << std::endl ;
 
-        case 2 :
-          std::cout << "Gimcheon for charging" << std::endl ;
-          break;
+        }
 
-        case 3 :
-          std::cout << "Cheongju for charging" << std::endl ;
-          break;
-
-        case 4 :
-          std::cout << "Anseong for charging" << std::endl ;
-          break;
-
-      }
-
-      battery_level = 80 ;
+        battery_level-- ;
+        now += km_per_kW ;
 
     }
 
-  }
-  
+    std::cout << "Arrived in Seoul with " << battery_level << "% battery remaining." << std::endl ;
 
-  std::cout << battery_level << std::endl ;
-
-  return 0 ;
+    return 0 ;
 
 }
-// 72.6 5.6 100 420
+
+bool destination( double battery, double now, double km_per_kW, double distance ) {
+
+    while ( now < distance ) {
+        battery-- ;
+        now += km_per_kW ;
+    }
+
+    if ( battery < CriticalLevel )
+        return true;
+    else
+        return false ;
+
+}
+
+bool nextStation( double battery, double now, double km_per_kW ) {
+
+    int now_third_digit = static_cast<int>(now/100) * 100 ;
+    double two_digits = now - now_third_digit ;
+    double target = now_third_digit ;
+
+    if ( two_digits > 100 - km_per_kW ) {
+        target += 200 ;
+        now_third_digit += 100 ;
+    }
+    else {
+        target += 100;
+    }
+
+    while ( now_third_digit != target && ( two_digits > km_per_kW || two_digits < 100 - km_per_kW ) ) {
+
+        battery-- ;
+        now += km_per_kW ;
+        now_third_digit = static_cast<int>(now/100) * 100 ;
+        two_digits = now - now_third_digit ;
+        if ( two_digits > 100 - km_per_kW )
+            now_third_digit += 100 ;
+
+    }
+
+    if ( battery < CriticalLevel )
+        return true;
+    else
+        return false ;
+
+}

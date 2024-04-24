@@ -1,19 +1,22 @@
 #include <iostream>
 #include <vector>
-#include <cmath>
+#include <algorithm>
+#include <memory>
 
-struct PatienInfo {
-  std::string name ;
-  int age ;
-  int weight ;
-  double height ;
-  double BMI ;
+struct PatientInfo {
+    std::string name ;
+    int age ;
+    int weight ;
+    double height ;
+    double BMI ;
 };
 
-void DescendingSortBMI() {} ;
+std::unique_ptr<PatientInfo> createPatient(std::string& name, int age, int weight, double height) ;
 
-void Search() {} ;
+void SortBMI(std::vector<std::unique_ptr<PatientInfo>>& patients, std::string& option) ;
 
-void ViewOption() {} ;
+void Search(std::vector<std::unique_ptr<PatientInfo>>& patients, std::string& option) ;
 
-void Remove() {} ;
+void ViewOption(const std::vector<std::unique_ptr<PatientInfo>>& patients, std::string& option) ;
+
+void Remove(std::vector<std::unique_ptr<PatientInfo>>& patients, std::string& option) ;

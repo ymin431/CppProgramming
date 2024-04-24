@@ -1,14 +1,23 @@
+#include "patient.h"
+
 pPatient create_patient(const std::string &name, int age, float weight, float height, int date){
 
-	//implement your code
+    PatientInfo patient ;
+    patient.name = name ;
+    patient.age = age ;
+    patient.weight = weight ;
+    patient.height = height ;
+    patient.date = date ;
+    patient.bmi = weight / (height * height) ;
+
+    return std::make_unique<PatientInfo>(patient) ;
 
 }
 
-
-
 void sort_patients(PatientList &patients) {
 
-	//implement your code
+	sort(patients.begin(), patients.end(),
+                  [](pPatient& a, pPatient& b){return a->bmi > b->bmi;}) ;
 
 }
 
@@ -16,7 +25,10 @@ void sort_patients(PatientList &patients) {
 
 std::vector<PatientInfo> find_patient(const PatientList &patients, const std::string &name){
 
-	//implement your code
+    auto find = std::find_i(patients.begin(), patients.end(),
+                             [name](pPatient& a){return a->name == name;}) ;
+
+    std::cout >>
 
 }
 

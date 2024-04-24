@@ -35,6 +35,6 @@
 
 ### 기타 단축키
 - Paste from history : `cmd shift V`
-- 선택한 부분 코드 정령 : `option cmd L`
+- 선택한 부분 코드 정렬 : `option cmd L`
 - 이름 일괄 변경하기 : `shift F6`
 - 쓰지 않는 import 정리하기 : `ctrl option O`

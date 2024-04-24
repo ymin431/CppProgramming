@@ -1,4 +1,4 @@
-#include "patien.cpp"
+#include "patient.cpp"
 
 enum class Command {
 
@@ -44,8 +44,6 @@ int main() {
 
   Command command;
 
-
-
   while (std::cin >> command_str) {
 
     command = get_command(command_str);
@@ -56,10 +54,45 @@ int main() {
 
     }
 
-    //implement your code
+    else if ( command == Command::CREATE ) {
 
-    return 0;
+        std::string name ;
+        int age, date ;
+        float weight, height ;
+        std::cin >> name >> age >> weight >> height >> date ;
+
+        patients.push_back(create_patient(name, age, weight, height, date)) ;
+
+    }
+
+    else if ( command == Command::SORT ) {
+
+        sort_patients(patients) ;
+
+    }
+
+    else if ( command == Command::FIND ) {
+
+        std::string name ;
+        std::cin >> name ;
+
+        find_patient(patients, name) ;
+
+        }
+
+    else if ( command == Command::COUNT ) {
+
+    }
+
+    else if ( command == Command::REMOVE ) {
+
+    }
 
   }
+
+  for ( auto& i : patients )
+      std::cout << i->name << " " << i->bmi << std::endl ;
+
+  return 0 ;
 
 }

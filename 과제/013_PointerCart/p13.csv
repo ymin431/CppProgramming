@@ -1,1 +1,0 @@
-cannot jump from switch statement to this case label <- 이 에러를 해결하기 위해선 switch에 소속된 여러 case문에 {}를 씌워주면 된다.
