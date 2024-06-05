@@ -1,0 +1,6 @@
+std::map
+- key는 Compare 함수 오브젝트(std::less<Key>)로 비교하여 정렬
+  T 타입의 operator < 호출
+- key의 고유성(uniqueness)는 equivalence ralation을 이용하여 결정
+  동등하다는 것은 !comp(a,b) && !comp(b,a) 표현식으로 결정
+- 일반적으로 red-black 트리로 구현 (검색, 제거, 입력이 logarithmic complecity를 가짐)

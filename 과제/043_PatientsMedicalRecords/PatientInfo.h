@@ -1,19 +1,21 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <memory>
 
 struct PatientInfo {
 
-  std::string name;
+    std::string name;
 
-  int age;
+    int age;
 
-  float weight;
+    float weight;
 
-  float height;
+    float height;
 
-  int date;
+    int date;
 
-  float bmi;
+    float bmi;
 
 };
 

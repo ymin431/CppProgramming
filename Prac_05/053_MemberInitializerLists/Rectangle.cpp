@@ -6,7 +6,7 @@ double Rectangle::area() const {
 
   double xchange = this->rightBottom.getX() - this->leftTop.getX() ;
   double ychange = this->leftTop.getY() - this->rightBottom.getY() ;
-  
+
   double area = xchange * ychange ;
 
   return abs(area) ;

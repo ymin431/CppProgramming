@@ -1,0 +1,1 @@
+Array 객체를 만들고 subscript operator ([]) 오버로딩을 통해 객체를 배열처럼 사용 가능하다.

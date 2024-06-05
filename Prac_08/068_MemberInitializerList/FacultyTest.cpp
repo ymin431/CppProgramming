@@ -10,11 +10,11 @@ int main() {
     Department ibe("Information and Biomedical Engineering");
     ibe.setFaculty(faculty.get());
 
-    Department depts[3] = {Department("Math"), ibe, cse };
+    Department depts[3] = {Department("Math"), ibe, cse};
     University univ("Pusan National University", 3);
     univ.setDepartments(depts);
 
-    univ.printInfo();
+    univ.printInfo();ㅇ
 
     return 0;
 }

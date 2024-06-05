@@ -8,7 +8,7 @@ Vehicle::Vehicle(std::string name, int range, float batteryCapacity)
     : name(name), range(range), batteryCapacity(batteryCapacity) {}
 
 Vehicle::Vehicle(std::string name, int range, bool hasFDS, float batteryCapacity)
-    : name(name), range(range), hasFDS(hasFDS), batteryCapacity(batteryCapacity) {}
+        : name(name), range(range), hasFDS(hasFDS), batteryCapacity(batteryCapacity) {}
 
 void Vehicle::autoPilot(bool onOff){
     std::cout << "Auto-Pilot is " << (onOff ? "on!" : "off!") << std::endl;

@@ -1,5 +1,3 @@
-#include <cstring>
-#include <iostream>
 #include "String.cpp"
 
 void printString(const String s){
@@ -12,6 +10,7 @@ String createName(){
 }
 
 int main(){
+
     String s1;
     s1.print("s1");
 
@@ -38,15 +37,17 @@ int main(){
 
     String s6 = createName();
     s6.print("s6");
-//
-//    String s7;
-//    s7 = createName();
-//    s7.print("s7");
-//
-//
-//    String s8 {s7};
-//    std::cout << std::strcmp(s7.data(), s8.data()) << std::endl;
-//    s7.at(1) = 'a';
-//    std::cout << std::strcmp(s7.data(), s8.data()) << std::endl;
-//    s8 = s8;
+
+    String s7;
+    s7 = createName();
+    s7.print("s7");
+
+
+    String s8 {s7};
+    std::cout << std::strcmp(s7.data(), s8.data()) << std::endl;
+    s7.at(1) = 'a';
+    std::cout << std::strcmp(s7.data(), s8.data()) << std::endl;
+
+    s8 = s8;
+
 }

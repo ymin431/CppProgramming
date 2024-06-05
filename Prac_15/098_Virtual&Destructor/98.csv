@@ -1,0 +1,2 @@
+virtual 멤버 함수를 가진 클래스 역시 virtual 소멸자를 가져야 합니다.
+why? 업 캐스팅 때문 (Parent* p = new Child();)

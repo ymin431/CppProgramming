@@ -1,37 +1,25 @@
 #include "String.h"
-#include <iostream>
 #include <cstring>
+#include <iostream>
+#include <algorithm>
+#include <numeric>
 
 String::String() {
-    s = new char[1];
-    s[0] = '\0';
+    s = new char[1] ;
+    s[0] = '\0' ;
     len = 0 ;
 }
 
 String::String(const char *str) {
-    if(str) {
-        len = strlen(str) ;
-        s = new char[strlen(str) + 1];
-        strcpy(s, str);
-    } else {
-        len = 0 ;
-        s = new char[1];
-        s[0] = '\0';
-    }
+    len = strlen(str) ;
+    s = new char[len+1] ;
+    std::copy(str,str+len+1,s) ;
 }
 
 String::String(const String &str) {
-    std::cout << str.s << std::endl ;
-    if ( strcmp(str.data(), this->data()) != 0 ) {
-        len = str.len ;
-        s = new char[len + 1] ;
-        strcpy(s, str.s) ;
-    }
-    else {
-        len = 0 ;
-        s = new char[1] ;
-        s[0] = '\0' ;
-    }
+    len = str.len ;
+    s = new char[len + 1] ;
+    std::copy(str.s, str.s+len+1,s) ;
 }
 
 String::~String() {
@@ -39,12 +27,10 @@ String::~String() {
 }
 
 String& String::operator=(const String& str) {
-    std::cout << "=" << std::endl ;
     if (this != &str) {
-        delete[] s;
-        len = str.len;
-        s = new char[len + 1];
-        strcpy(s, str.s);
+        len = str.len ;
+        s = new char[len + 1] ;
+        std::copy(str.s, str.s + len + 1, s) ;
     }
     return *this;
 }
@@ -62,8 +48,10 @@ size_t String::size() const {
 }
 
 void String::print(const char *str) const {
-    std::cout << str << ": " << this->s << ", size: " << this->len << std::endl ;
+    std::cout << str << ": " << this->data() << ", size: " << this->size() << std::endl ;
 }
-void String::print(const char *str) const {
-    std::cout << str << ": " << this->s << ", size: " << this->len << std::endl ;
+
+void printString(const char *str) {
+    std::cout << "printString" << ": " << str << ", "
+              << "size: " << sizeof(str) << std::endl;
 }

@@ -1,18 +1,20 @@
 #include "patient.cpp"
 
+struct PatientInfo ;
+
 enum class Command {
 
-  CREATE,
+    CREATE,
 
-  SORT,
+    SORT,
 
-  FIND,
+    FIND,
 
-  COUNT,
+    COUNT,
 
-  REMOVE,
+    REMOVE,
 
-  EXIT
+    EXIT
 
 };
 
@@ -20,79 +22,101 @@ enum class Command {
 
 Command get_command(const std::string &command_str) {
 
-  if (command_str == "CREATE") return Command::CREATE;
+    if (command_str == "CREATE") return Command::CREATE;
 
-  if (command_str == "SORT") return Command::SORT;
+    if (command_str == "SORT") return Command::SORT;
 
-  if (command_str == "FIND") return Command::FIND;
+    if (command_str == "FIND") return Command::FIND;
 
-  if (command_str == "COUNT") return Command::COUNT;
+    if (command_str == "COUNT") return Command::COUNT;
 
-  if (command_str == "REMOVE") return Command::REMOVE;
+    if (command_str == "REMOVE") return Command::REMOVE;
 
-  return Command::EXIT;
+    return Command::EXIT;
 
 }
-
 
 
 int main() {
 
-  PatientList patients;
+    std::cout << std::fixed ;
+    std::cout.precision(2) ;
 
-  std::string command_str;
+    PatientList patients;
 
-  Command command;
+    std::string command_str;
 
-  while (std::cin >> command_str) {
+    Command command;
 
-    command = get_command(command_str);
 
-    if (command == Command::EXIT) {
 
-      break;
+    while (std::cin >> command_str) {
 
-    }
+        command = get_command(command_str);
 
-    else if ( command == Command::CREATE ) {
+        if (command == Command::EXIT) {
 
-        std::string name ;
-        int age, date ;
-        float weight, height ;
-        std::cin >> name >> age >> weight >> height >> date ;
-
-        patients.push_back(create_patient(name, age, weight, height, date)) ;
-
-    }
-
-    else if ( command == Command::SORT ) {
-
-        sort_patients(patients) ;
-
-    }
-
-    else if ( command == Command::FIND ) {
-
-        std::string name ;
-        std::cin >> name ;
-
-        find_patient(patients, name) ;
+            break;
 
         }
 
-    else if ( command == Command::COUNT ) {
+        else if ( command == Command::CREATE ) {
+
+            std::string newName;
+            int newAge, newDate ;
+            float newWeight, newHeight ;
+
+            std::cin >> newName >> newAge >> newWeight >> newHeight >> newDate ;
+
+            patients.push_back(create_patient(newName, newAge, newWeight, newHeight, newDate)) ;
+
+        }
+
+        else if ( command == Command::SORT ) {
+
+            sort_patients(patients) ;
+            print_patients(patients) ;
+
+        }
+
+        else if ( command == Command::FIND ) {
+
+            std::string findName ;
+            std::cin >> findName ;
+
+            std::vector<std::unique_ptr<PatientInfo>> foundPatient = find_patient(patients, findName) ;
+
+            if ( foundPatient.empty() )
+                std::cout << "Patient not found" << std::endl ;
+            else
+                print_patients(foundPatient) ;
+
+        }
+
+        else if ( command == Command::COUNT ) {
+
+            float cmpBmi ;
+            std::cin >> cmpBmi ;
+
+            int countPatient = count_patients(patients, cmpBmi) ;
+
+            std::cout << countPatient << " patients with BMI greater than " << cmpBmi << std::endl ;
+
+        }
+
+        else if ( command == Command::REMOVE ) {
+
+            int removeDate ;
+            std::cin >> removeDate ;
+
+            remove_old_records(patients, removeDate) ;
+            print_patients(patients) ;
+
+        }
 
     }
 
-    else if ( command == Command::REMOVE ) {
-
-    }
-
-  }
-
-  for ( auto& i : patients )
-      std::cout << i->name << " " << i->bmi << std::endl ;
-
-  return 0 ;
+    return 0;
 
 }
+

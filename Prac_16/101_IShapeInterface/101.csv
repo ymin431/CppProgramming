@@ -1,0 +1,1 @@
+pure virtual function을 선언해 클래스 계층도에서 최상위 클래스를 추상 클래스로 정의한다.

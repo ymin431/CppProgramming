@@ -1,0 +1,4 @@
+student_grades[1] = {1, "Bob", 90};
+여기서 대입 연산자 뒤가 우선임
+따라서 {1, "Bob", 90} 부분에서 argument가 3개짜리인 생성자가 호출이 되고
+student_grades[1] 부분에 Student 객체가 현재 없기 때문에 default 생성자가 호출이 되는 것
