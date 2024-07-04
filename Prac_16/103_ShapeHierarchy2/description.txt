@@ -1,0 +1,7 @@
+OCP 준수 여부
+- 추상화와 다형성 활용
+  IShape라는 추상클래스를 상속받아 Circle, Rectangle, Triangle, Polygon 등의 구체적인 클래스들 구현
+  추상 클래스 내부에 getArea(), getPerimeter(), toString() 등의 가상 함수를 제공
+- 기존 코드의 변경 없이 확장 가능
+  Polygon 클래스를 추가할 때, IShape나 Helper, ShapeTest의 다른 코드들을 전혀 변경하지 않고 객체를 추가함
+- 코드 변경의 최소화

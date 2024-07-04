@@ -3,6 +3,7 @@
 #include "Circle.h"
 #include "Rectangle.h"
 #include "Triangle.h"
+#include "Polygon.h"
 
 #include <iostream>
 #include <vector>
@@ -36,6 +37,7 @@ int main() {
     shapes.emplace_back(std::make_unique<Rectangle>(std::vector<Point>{{0, 0}, {0, 2}, {2, 2}, {2, 0}}));
     shapes.emplace_back(std::make_unique<Triangle>(std::vector<Point>{{0, 0}, {0, 2}, {2, 2}}));
     shapes.emplace_back(std::make_unique<Circle>(Point{0, 0}, 3));
+    shapes.emplace_back(std::make_unique<Polygon>(std::vector<Point>{{0, 0}, {0, 2}, {2, 2}, {2, 0}, {1, 1}}));
 
     doingSomething(shapes);
 
